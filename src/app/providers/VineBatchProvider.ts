@@ -1,10 +1,10 @@
 import { Storage } from '@ionic/storage'
 import { VineBatch } from '../models/VineBatch'
 
-class VineBatchProvider {
-  private stroage: Storage
+export class VineBatchProvider {
+  private storage: Storage
   constructor(storage: Storage) {
-    this.stroage = storage
+    this.storage = storage
   }
 
   public addVineBatch(vineBatch: VineBatch) {
@@ -16,10 +16,11 @@ class VineBatchProvider {
   }
 
   public getVineBatches() {
-
+    return this.storage.get('defaultName')
   }
 
   public setVineBatches() {
-
+    // Generate key with name and year or more infos
+    this.storage.set("defaultName", new VineBatch("Chat tout neuf du Pape", 5000, 'Moldavie', 1404, Date.now()))
   }
 }

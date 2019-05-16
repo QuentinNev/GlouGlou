@@ -7,7 +7,8 @@
 </ion-header>
 
 <ion-content>
-  <ion-list *ngFor="let bottle of bottles">
-    <ion-item>{{ bottle.name }}</ion-item>
-  </ion-list>
+  <div> {{ vineBatch.name }} </div>
+
+  <ion-button (click)="setVineBatch()">Set Vine Batch</ion-button>
+  <ion-button (click)="getVineBatch()">Get Vine Batch</ion-button>
 </ion-content>

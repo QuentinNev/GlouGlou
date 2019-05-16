@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { Storage } from '@ionic/storage';
 
 @Component({
   selector: 'app-home',
@@ -7,4 +8,7 @@ import { Component } from '@angular/core';
 })
 export class HomePage {
 
+  constructor(private storage: Storage) {
+    //this.bottleProvider = new BottleProvider(this.storage)
+  }
 }

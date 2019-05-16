@@ -2,9 +2,9 @@ import { Storage } from '@ionic/storage'
 import { VineBatch } from '../models/VineBatch'
 
 class VineBatchProvider {
-  private stroage: Storage
+  private storage: Storage
   constructor(storage: Storage) {
-    this.stroage = storage
+    this.storage = storage
   }
 
   public addVineBatch(vineBatch: VineBatch) {
@@ -20,6 +20,6 @@ class VineBatchProvider {
   }
 
   public setVineBatches() {
-
+    this.
   }
 }

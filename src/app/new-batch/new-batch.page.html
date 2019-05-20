@@ -1,0 +1,38 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>newBatch</ion-title>
+    <ion-buttons slot="start">
+      <ion-back-button></ion-back-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-item>
+    <ion-label>Bottle name</ion-label>
+    <ion-input [(ngModel)]="batchName" type="text"></ion-input>
+  </ion-item>
+  <ion-item>
+    <ion-label>Bottle number</ion-label>
+    <ion-input [(ngModel)]="bottleNumber" type="number"></ion-input>
+  </ion-item>
+  <ion-item>
+    <ion-label>Country</ion-label>
+    <ion-input [(ngModel)]="country" type="text"></ion-input>
+  </ion-item>
+  <ion-item>
+    <ion-label>Year</ion-label>
+    <ion-input [(ngModel)]="year" type="number"></ion-input>
+  </ion-item>
+  <ion-item>
+    <ion-label>Date added</ion-label>
+    <ion-datetime [(ngModel)]="dateAdded" display-format="DD MMM YYYY"></ion-datetime>
+  </ion-item>
+  <ion-item>
+    <ion-label>Vineyard</ion-label>
+    <ion-input [(ngModel)]="vineYard" type="text"></ion-input>
+  </ion-item>
+  <span>
+    <ion-button (click)="printDate()">Print date</ion-button>
+  </span>
+</ion-content>

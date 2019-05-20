@@ -21,8 +21,7 @@ export class VineBatchProvider {
   }
 
   public setVineBatches() {
-    // Generate key with name and year or more infos
-    this.storage.set("defaultName", new VineBatch("Chat tout neuf du Pape", 5000, 'Moldavie', 1404, Date.now()))
+
   }
 
   public setVineBatche() {

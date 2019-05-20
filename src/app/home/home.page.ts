@@ -24,4 +24,16 @@ export class HomePage {
   public async getVineBatch() {
     this.vineBatch = await this.vineBatchProvider.getVineBatches()
   }
+
+  public addBatch() {
+
+  }
+
+  public removeBatch() {
+
+  }
+
+  public updateDateTime() {
+
+  }
 }

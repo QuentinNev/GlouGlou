@@ -11,7 +11,7 @@ export class VineBatchProvider {
 
   public async addVineBatch(vineBatch: VineBatch) {
     let batches = await this.getVineBatches()
-    batches ? [...batches, vineBatch] : [vineBatch]
+    batches = batches ? [...batches, vineBatch] : [vineBatch]
     this.storage.set(this.storageKey, batches)
   }
 

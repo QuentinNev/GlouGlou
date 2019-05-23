@@ -18,10 +18,22 @@ export class HomePage {
   }
 
   public setVineBatch() {
-    this.vineBatchProvider.setVineBatches()
+    this.vineBatchProvider.setVineBatch()
   }
 
   public async getVineBatch() {
     this.vineBatch = await this.vineBatchProvider.getVineBatches()
+  }
+
+  public addBatch() {
+
+  }
+
+  public removeBatch() {
+    this.vineBatchProvider.removeVineBatch("95ff7aec-b729-4da0-bb21-5951ec189f13")
+  }
+
+  public updateDateTime() {
+
   }
 }

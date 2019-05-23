@@ -3,12 +3,16 @@ import { VineBatch } from '../models/VineBatch'
 
 export class VineBatchProvider {
   private storage: Storage
+  private storageKey: string
   constructor(storage: Storage) {
     this.storage = storage
+    this.storageKey = "batches"
   }
 
-  public addVineBatch(vineBatch: VineBatch) {
-
+  public async addVineBatch(vineBatch: VineBatch) {
+    let batches = await this.getVineBatches()
+    batches = [...batches, vineBatch]
+    this.storage.set(this.storageKey, batches)
   }
 
   public removeVineBatch(id) {
@@ -17,7 +21,7 @@ export class VineBatchProvider {
 
   // Returns a promise, use in an async function !
   public getVineBatches() {
-    return this.storage.get('defaultName')
+    return this.storage.get(this.storageKey)
   }
 
   public setVineBatches() {
@@ -26,6 +30,6 @@ export class VineBatchProvider {
 
   public setVineBatch() {
     // Generate key with name and year or more infos
-    this.storage.set("defaultName", new VineBatch("Chat tout neuf du Pape", 5000, 'Moldavie', 1404, Date.now(), "Vignoble personange"))
+    this.storage.set(this.storageKey, [new VineBatch("Chat tout neuf du Pape", 5000, 'Moldavie', 1404, Date.now(), "Vignoble personange")])
   }
 }

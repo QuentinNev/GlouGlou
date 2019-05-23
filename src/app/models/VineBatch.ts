@@ -7,7 +7,7 @@ export class VineBatch {
   private year: number
   private dateAdded: number
   private vineYard: string
-  private uniqueID: string
+  public uuid: string
 
   constructor(name: string, bottleNbr: number, country: string, year: number, dateAdded: number, vineYard: string) {
     this.bottleNumber = bottleNbr
@@ -16,6 +16,6 @@ export class VineBatch {
     this.year = year
     this.dateAdded = dateAdded
     this.vineYard = vineYard
-    this.uniqueID = uuid();
+    this.uuid = uuid();
   }
 }

@@ -15,17 +15,17 @@ export class VineBatchProvider {
     this.storage.set(this.storageKey, batches)
   }
 
-  public removeVineBatch(id) {
-
+  public async removeVineBatch(id) {
+    let batches = await this.getVineBatches()
+    batches = batches.filter(function (batch) {
+      return batch.uuid !== id
+    })
+    this.storage.set(this.storageKey, batches)
   }
 
   // Returns a promise, use in an async function !
   public getVineBatches() {
     return this.storage.get(this.storageKey)
-  }
-
-  public setVineBatches() {
-
   }
 
   public setVineBatch() {

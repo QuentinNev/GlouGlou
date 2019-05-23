@@ -30,7 +30,7 @@ export class HomePage {
   }
 
   public removeBatch() {
-
+    this.vineBatchProvider.removeVineBatch("95ff7aec-b729-4da0-bb21-5951ec189f13")
   }
 
   public updateDateTime() {

@@ -7,7 +7,7 @@
   </ion-toolbar>
 </ion-header>
 
-<ion-content>
+<ion-content class="ion-padding">
   <ion-item>
     <ion-label>Bottle name</ion-label>
     <ion-input [(ngModel)]="batchName" type="text"></ion-input>
@@ -33,6 +33,6 @@
     <ion-input [(ngModel)]="vineYard" type="text"></ion-input>
   </ion-item>
   <span>
-    <ion-button (click)="printDate()">Print date</ion-button>
+    <ion-button (click)="create()">Create vine batch</ion-button>
   </span>
 </ion-content>

@@ -18,7 +18,7 @@ export class HomePage {
   }
 
   public setVineBatch() {
-    this.vineBatchProvider.setVineBatches()
+    this.vineBatchProvider.setVineBatch()
   }
 
   public async getVineBatch() {

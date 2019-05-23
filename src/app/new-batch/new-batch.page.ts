@@ -1,4 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { Storage } from '@ionic/storage';
+import { VineBatchProvider } from '../providers/VineBatchProvider'
+import { VineBatch } from '../models/VineBatch'
 
 @Component({
   selector: 'app-new-batch',
@@ -13,18 +16,27 @@ export class NewBatchPage implements OnInit {
   public dateAdded: number
   public vineYard: string
 
-  constructor() {
+  private vineProvider: VineBatchProvider
+
+  constructor(private storage: Storage) {
     this.batchName = "Vin vraiment très nul"
     this.bottleNumber = 10
     this.country = "Ici"
     this.year = 20000
 
-    // Known bug : Two-way binding ([(ngModel)]="") doesn't work with ion-datetime component since almost 1 year
+    // Known bug : Two-way binding ([(ngModel)]="") doesn't work with ion-datetime component since something like 1 year but they doesn't seems to care
     this.dateAdded = Date.now()
     this.vineYard = "Vous n'est pas ignoble vous êtes vignoble"
+
+    this.vineProvider = new VineBatchProvider(this.storage)
   }
 
   ngOnInit() {
   }
 
+  public create() {
+    let vineBatch = new VineBatch(this.batchName, this.bottleNumber, this.country, this.year, this.dateAdded, this.vineYard)
+
+    this.vineProvider.addVineBatch(vineBatch)
+  }
 }

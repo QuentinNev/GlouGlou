@@ -9,28 +9,23 @@
 
 <ion-content class="ion-padding">
   <ion-item>
-    <ion-label>Bottle name</ion-label>
-    <ion-input [(ngModel)]="batchName" type="text"></ion-input>
+    <ion-input placeholder="Name" [(ngModel)]="batchName" type="text"></ion-input>
   </ion-item>
   <ion-item>
-    <ion-label>Bottle number</ion-label>
-    <ion-input [(ngModel)]="bottleNumber" type="number"></ion-input>
+    <ion-input placeholder="Number of bottles" [(ngModel)]="bottleNumber" type="number"></ion-input>
   </ion-item>
   <ion-item>
-    <ion-label>Country</ion-label>
-    <ion-input [(ngModel)]="country" type="text"></ion-input>
+    <ion-input placeholder="Country" [(ngModel)]="country" type="text"></ion-input>
   </ion-item>
   <ion-item>
-    <ion-label>Year</ion-label>
-    <ion-input [(ngModel)]="year" type="number"></ion-input>
+    <ion-input placeholder="Year" [(ngModel)]="year" type="number"></ion-input>
   </ion-item>
   <ion-item>
-    <ion-label>Date added</ion-label>
-    <ion-datetime [(ngModel)]="dateAdded" display-format="DD MMM YYYY"></ion-datetime>
+    <!-- datetime place -->
+    <ion-datetime placeholder="Date added" [(ngModel)]="dateAdded" display-format="DD MMM YYYY"></ion-datetime>
   </ion-item>
   <ion-item>
-    <ion-label>Vineyard</ion-label>
-    <ion-input [(ngModel)]="vineYard" type="text"></ion-input>
+    <ion-input placeholder="Vineyard" [(ngModel)]="vineYard" type="text"></ion-input>
   </ion-item>
   <span>
     <ion-button (click)="create()">Create vine batch</ion-button>

@@ -11,25 +11,22 @@ export class VineBatchProvider {
 
   public async addVineBatch(vineBatch: VineBatch) {
     let batches = await this.getVineBatches()
-    batches = [...batches, vineBatch]
+    batches ? [...batches, vineBatch] : [vineBatch]
     this.storage.set(this.storageKey, batches)
   }
 
-  public async removeVineBatch(id) {
+  public async removeVineBatch(uuid) {
     let batches = await this.getVineBatches()
-    batches = batches.filter(function (batch) {
-      return batch.uuid !== id
-    })
-    this.storage.set(this.storageKey, batches)
+    if (batches) {
+      batches = batches.filter(function (batch) {
+        return batch.uuid !== uuid
+      })
+      this.storage.set(this.storageKey, batches)
+    }
   }
 
   // Returns a promise, use in an async function !
   public getVineBatches() {
     return this.storage.get(this.storageKey)
-  }
-
-  public setVineBatch() {
-    // Generate key with name and year or more infos
-    this.storage.set(this.storageKey, [new VineBatch("Chat tout neuf du Pape", 5000, 'Moldavie', 1404, Date.now(), "Vignoble personange")])
   }
 }

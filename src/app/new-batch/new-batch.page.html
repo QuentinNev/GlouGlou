@@ -1,0 +1,32 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>Add a new batch</ion-title>
+    <ion-buttons slot="start">
+      <ion-back-button></ion-back-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="ion-padding">
+  <ion-item>
+    <ion-input placeholder="Name" [(ngModel)]="batchName" type="text"></ion-input>
+  </ion-item>
+  <ion-item>
+    <ion-input placeholder="Number of bottles" [(ngModel)]="bottleNumber" type="number"></ion-input>
+  </ion-item>
+  <ion-item>
+    <ion-input placeholder="Country" [(ngModel)]="country" type="text"></ion-input>
+  </ion-item>
+  <ion-item>
+    <ion-input placeholder="Year" [(ngModel)]="year" type="number"></ion-input>
+  </ion-item>
+  <ion-item>
+    <ion-datetime placeholder="Date added" [(ngModel)]="dateAdded" display-format="DD MMM YYYY"></ion-datetime>
+  </ion-item>
+  <ion-item>
+    <ion-input placeholder="Vineyard" [(ngModel)]="vineYard" type="text"></ion-input>
+  </ion-item>
+  <span>
+    <ion-button href="/" (click)="create()">Create vine batch</ion-button>
+  </span>
+</ion-content>

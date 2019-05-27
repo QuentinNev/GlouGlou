@@ -1,25 +1,32 @@
 import { Storage } from '@ionic/storage'
 import { VineBatch } from '../models/VineBatch'
 
-class VineBatchProvider {
-  private stroage: Storage
+export class VineBatchProvider {
+  private storage: Storage
+  private storageKey: string
   constructor(storage: Storage) {
-    this.stroage = storage
+    this.storage = storage
+    this.storageKey = "batches"
   }
 
-  public addVineBatch(vineBatch: VineBatch) {
-
+  public async addVineBatch(vineBatch: VineBatch) {
+    let batches = await this.getVineBatches()
+    batches = batches ? [...batches, vineBatch] : [vineBatch]
+    this.storage.set(this.storageKey, batches)
   }
 
-  public removeVineBatch(id) {
-
+  public async removeVineBatch(uuid) {
+    let batches = await this.getVineBatches()
+    if (batches) {
+      batches = batches.filter(function (batch) {
+        return batch.uuid !== uuid
+      })
+      this.storage.set(this.storageKey, batches)
+    }
   }
 
+  // Returns a promise, use in an async function !
   public getVineBatches() {
-
-  }
-
-  public setVineBatches() {
-
+    return this.storage.get(this.storageKey)
   }
 }

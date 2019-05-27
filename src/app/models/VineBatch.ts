@@ -1,4 +1,5 @@
-const uuid = require('uuid/v4')
+declare var require: any;
+const uuidFunction = require('uuid/v4')
 
 export class VineBatch {
   private bottleNumber: number
@@ -16,6 +17,6 @@ export class VineBatch {
     this.year = year
     this.dateAdded = dateAdded
     this.vineYard = vineYard
-    this.uuid = uuid();
+    this.uuid = uuidFunction();
   }
 }

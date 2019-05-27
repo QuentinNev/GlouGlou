@@ -1,13 +1,39 @@
 <ion-header>
   <ion-toolbar>
     <ion-title>
-      Ionic Blank
+      GlouGlou
     </ion-title>
   </ion-toolbar>
 </ion-header>
 
-<ion-content class="ion-padding">
-  <ion-button (click)="setVineBatch()">ADD DEFAULT BATCH</ion-button>
-  <ion-button href="/new-batch">Add a new batch</ion-button>
-  <ion-button (click)="removeBatch()">REMOVE BATCH</ion-button>
+<ion-content>
+  <ion-list>
+    <ion-item *ngFor="let batch of vineBatches">
+      <ion-grid>
+        <ion-row>
+          <ion-col>
+            {{ batch.name }}
+          </ion-col>
+          <ion-col size="3">
+            <ion-button expand="full" (click)="removeBatch(batch.uuid)">Delete</ion-button>
+          </ion-col>
+        </ion-row>
+      </ion-grid>
+    </ion-item>
+  </ion-list>
 </ion-content>
+
+<ion-footer>
+  <ion-toolbar>
+    <ion-row>
+      <ion-col>
+        <ion-button expand="full" href="/new-batch">Add a new batch</ion-button>
+      </ion-col>
+      <!--  As button is used in place of a ion-resfresher because the component is broken,
+          everything is hided behind the header  -->
+      <ion-col>
+        <ion-button color="secondary" expand="full" (click)="refresh()">Resfresh list</ion-button>
+      </ion-col>
+    </ion-row>
+  </ion-toolbar>
+</ion-footer>

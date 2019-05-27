@@ -22,10 +22,8 @@ export class HomePage {
     this.vineBatches = await this.vineBatchProvider.getVineBatches()
   }
 
-  public refresh(event) {
-    this.getVineBatches().then(() => {
-      event.target.complete()
-    })
+  public refresh() {
+    this.getVineBatches()
   }
 
   public removeBatch(uuid: string) {

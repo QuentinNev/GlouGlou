@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { Storage } from '@ionic/storage';
-import { VineBatchProvider } from '../providers/VineBatchProvider';
-import { VineBatch } from '../models/VineBatch';
+import { VineBatchProvider } from '../_providers/VineBatchProvider';
+import { VineBatch } from '../_models/VineBatch';
 
 @Component({
   selector: 'app-home',

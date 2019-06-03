@@ -1,5 +1,5 @@
 import { Storage } from '@ionic/storage'
-import { VineBatch } from '../models/VineBatch'
+import { VineBatch } from '../_models/VineBatch'
 
 export class VineBatchProvider {
   private storage: Storage

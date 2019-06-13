@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { Storage } from '@ionic/storage';
 import { VineBatchProvider } from '../_providers/VineBatchProvider';
 import { VineBatch } from '../_models/VineBatch';
+import { QRScanner, QRScannerStatus } from '@ionic-native/qr-scanner/ngx'
 
 @Component({
   selector: 'app-home',
@@ -27,5 +28,17 @@ export class HomePage {
     this.vineBatchProvider.removeVineBatch(uuid).then(() => {
       this.getVineBatches()
     })
+  }
+
+  public scan() {
+    QRScanner.scan()
+
+    function displayContents(err, text) {
+      if (err) {
+
+      } else {
+        this.navCtrl.goForward('/show-batch/' + text)
+      }
+    }
   }
 }

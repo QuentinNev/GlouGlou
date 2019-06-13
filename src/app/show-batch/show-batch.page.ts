@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import QRCode from 'qrcode'
+import { ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-show-batch',
@@ -7,14 +8,13 @@ import QRCode from 'qrcode'
   styleUrls: ['./show-batch.page.scss'],
 })
 export class ShowBatchPage implements OnInit {
-  private qr: QRCode
+  private batchId: string
 
-  constructor() {
-    this.qr = QRCode.create
-    console.log(QRCode)
+  constructor(private route: ActivatedRoute) {
   }
 
   ngOnInit() {
+    this.batchId = this.route.snapshot.paramMap.get('id')
   }
 
 }

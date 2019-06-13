@@ -11,6 +11,7 @@ import { VineBatch } from '../_models/VineBatch';
 })
 export class ShowBatchPage implements OnInit {
   private batchId: string
+  private QRCode: string
   private vineBatch: VineBatch
 
   constructor(private route: ActivatedRoute, private vineBatchProvider: VineBatchProvider) {
@@ -19,11 +20,23 @@ export class ShowBatchPage implements OnInit {
   ngOnInit() {
     this.batchId = this.route.snapshot.paramMap.get('id')
     this.loadBatch()
+    this.generateQRCode()
+    this.QRCode = null
   }
 
   loadBatch() {
     this.vineBatchProvider.getVineBatch(this.batchId).then(batch => {
       this.vineBatch = batch
+    })
+  }
+
+  generateQRCode() {
+    // toDataURL return an base64 encoded picture and not an URL at all, it can be used as it but it's not mandatory
+    QRCode.toDataURL(this.batchId).then(url => {
+      console.log(url)
+      this.QRCode = url
+    }).catch(err => {
+      console.log(err)
     })
   }
 

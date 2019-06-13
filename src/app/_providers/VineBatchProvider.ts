@@ -31,4 +31,12 @@ export class VineBatchProvider {
   public getVineBatches() {
     return this.storage.get(this.storageKey)
   }
+
+  public getVineBatch(uuid: string) {
+    return this.storage.get(this.storageKey).then(batches => {
+      return batches.find(element => {
+        return element.uuid === uuid
+      })
+    })
+  }
 }

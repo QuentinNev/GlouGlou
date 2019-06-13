@@ -1,5 +1,5 @@
 import { Storage } from '@ionic/storage'
-import { VineBatch } from '../models/VineBatch'
+import { VineBatch } from '../_models/VineBatch'
 import { Injectable } from '@angular/core'
 
 @Injectable()
@@ -30,5 +30,13 @@ export class VineBatchProvider {
   // Returns a promise, use in an async function !
   public getVineBatches() {
     return this.storage.get(this.storageKey)
+  }
+
+  public getVineBatch(uuid: string) {
+    return this.storage.get(this.storageKey).then(batches => {
+      return batches.find(element => {
+        return element.uuid === uuid
+      })
+    })
   }
 }

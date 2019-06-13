@@ -15,7 +15,10 @@
             {{ batch.name }}
           </ion-col>
           <ion-col size="3">
-            <ion-button expand="full" (click)="removeBatch(batch.uuid)">Delete</ion-button>
+            <ion-button color="danger" expand="full" (click)="removeBatch(batch.uuid)">Delete</ion-button>
+          </ion-col>
+          <ion-col size="4">
+            <ion-button expand="full" [attr.href]="'/show-batch/' + batch.uuid">View batch</ion-button>
           </ion-col>
         </ion-row>
       </ion-grid>

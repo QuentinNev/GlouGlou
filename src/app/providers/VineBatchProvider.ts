@@ -1,6 +1,8 @@
 import { Storage } from '@ionic/storage'
 import { VineBatch } from '../models/VineBatch'
+import { Injectable } from '@angular/core'
 
+@Injectable()
 export class VineBatchProvider {
   private storage: Storage
   private storageKey: string

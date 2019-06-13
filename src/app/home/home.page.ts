@@ -9,12 +9,9 @@ import { VineBatch } from '../models/VineBatch';
   styleUrls: ['home.page.scss'],
 })
 export class HomePage {
-  private vineBatchProvider: VineBatchProvider
   private vineBatches: Array<VineBatch>
 
-  constructor(private storage: Storage) {
-    this.vineBatchProvider = new VineBatchProvider(this.storage)
-    this.vineBatches = []
+  constructor(private storage: Storage, public vineBatchProvider: VineBatchProvider) {
     this.getVineBatches()
   }
 

@@ -11,12 +11,17 @@ import { QRScanner, QRScannerStatus } from '@ionic-native/qr-scanner/ngx'
 })
 export class HomePage {
   private wineBatches: Array<WineBatch>
+  private test: String
 
-  constructor(private storage: Storage, public wineBatchProvider: WineBatchProvider) {
+  constructor(public wineBatchProvider: WineBatchProvider) {
     this.getWineBatches()
   }
 
+  /**
+   *  Refresh wine batches then update displayed list
+   */
   public async getWineBatches() {
+    this.wineBatchProvider.refreshWineBatches()
     this.wineBatches = await this.wineBatchProvider.getWineBatches()
   }
 

@@ -16,9 +16,7 @@ export class NewBatchPage implements OnInit {
   public dateAdded: number
   public vineYard: string
 
-  private vineProvider: WineBatchProvider
-
-  constructor(private storage: Storage) {
+  constructor(public wineBatchProvider: WineBatchProvider) {
     if (false) {
       this.batchName = "Vin vraiment très nul"
       this.bottleNumber = 10
@@ -29,8 +27,6 @@ export class NewBatchPage implements OnInit {
       this.dateAdded = Date.now()
       this.vineYard = "Vous n'est pas ignoble vous êtes vignoble"
     }
-
-    this.vineProvider = new WineBatchProvider(this.storage)
   }
 
   ngOnInit() {
@@ -39,6 +35,6 @@ export class NewBatchPage implements OnInit {
   public create() {
     let wineBatch = new WineBatch(this.batchName, this.bottleNumber, this.country, this.year, this.dateAdded, this.vineYard)
 
-    this.vineProvider.addWineBatch(wineBatch)
+    this.wineBatchProvider.addWineBatch(wineBatch)
   }
 }

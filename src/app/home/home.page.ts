@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { Storage } from '@ionic/storage';
-import { VineBatchProvider } from '../_providers/WineBatchProvider';
-import { VineBatch } from '../_models/WineBatch';
+import { WineBatchProvider } from '../_providers/WineBatchProvider';
+import { WineBatch } from '../_models/WineBatch';
 import { QRScanner, QRScannerStatus } from '@ionic-native/qr-scanner/ngx'
 
 @Component({
@@ -10,23 +10,23 @@ import { QRScanner, QRScannerStatus } from '@ionic-native/qr-scanner/ngx'
   styleUrls: ['home.page.scss'],
 })
 export class HomePage {
-  private vineBatches: Array<VineBatch>
+  private wineBatches: Array<WineBatch>
 
-  constructor(private storage: Storage, public vineBatchProvider: VineBatchProvider) {
-    this.getVineBatches()
+  constructor(private storage: Storage, public wineBatchProvider: WineBatchProvider) {
+    this.getWineBatches()
   }
 
-  public async getVineBatches() {
-    this.vineBatches = await this.vineBatchProvider.getVineBatches()
+  public async getWineBatches() {
+    this.wineBatches = await this.wineBatchProvider.getWineBatches()
   }
 
   public refresh() {
-    this.getVineBatches()
+    this.getWineBatches()
   }
 
   public removeBatch(uuid: string) {
-    this.vineBatchProvider.removeVineBatch(uuid).then(() => {
-      this.getVineBatches()
+    this.wineBatchProvider.removeWineBatch(uuid).then(() => {
+      this.getWineBatches()
     })
   }
 

@@ -1,7 +1,7 @@
 declare var require: any;
 const uuidFunction = require('uuid/v4')
 
-export class VineBatch {
+export class WineBatch {
   private bottleNumber: number
   private name: string
   private country: string

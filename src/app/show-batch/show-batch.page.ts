@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import QRCode from 'qrcode'
 import { ActivatedRoute } from '@angular/router';
-import { VineBatchProvider } from '../_providers/WineBatchProvider';
-import { VineBatch } from '../_models/WineBatch';
+import { WineBatchProvider } from '../_providers/WineBatchProvider';
+import { WineBatch } from '../_models/WineBatch';
 
 @Component({
   selector: 'app-show-batch',
@@ -12,9 +12,9 @@ import { VineBatch } from '../_models/WineBatch';
 export class ShowBatchPage implements OnInit {
   private batchId: string
   private QRCode: string
-  private vineBatch: VineBatch
+  private wineBatch: WineBatch
 
-  constructor(private route: ActivatedRoute, private vineBatchProvider: VineBatchProvider) {
+  constructor(private route: ActivatedRoute, private wineBatchProvider: WineBatchProvider) {
   }
 
   ngOnInit() {
@@ -25,8 +25,8 @@ export class ShowBatchPage implements OnInit {
   }
 
   loadBatch() {
-    this.vineBatchProvider.getVineBatch(this.batchId).then(batch => {
-      this.vineBatch = batch
+    this.wineBatchProvider.getWineBatch(this.batchId).then(batch => {
+      this.wineBatch = batch
     })
   }
 

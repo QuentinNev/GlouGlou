@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Storage } from '@ionic/storage';
-import { VineBatchProvider } from '../_providers/WineBatchProvider'
-import { VineBatch } from '../_models/WineBatch'
+import { WineBatchProvider } from '../_providers/WineBatchProvider'
+import { WineBatch } from '../_models/WineBatch'
 
 @Component({
   selector: 'app-new-batch',
@@ -16,7 +16,7 @@ export class NewBatchPage implements OnInit {
   public dateAdded: number
   public vineYard: string
 
-  private vineProvider: VineBatchProvider
+  private vineProvider: WineBatchProvider
 
   constructor(private storage: Storage) {
     if (false) {
@@ -30,15 +30,15 @@ export class NewBatchPage implements OnInit {
       this.vineYard = "Vous n'est pas ignoble vous êtes vignoble"
     }
 
-    this.vineProvider = new VineBatchProvider(this.storage)
+    this.vineProvider = new WineBatchProvider(this.storage)
   }
 
   ngOnInit() {
   }
 
   public create() {
-    let vineBatch = new VineBatch(this.batchName, this.bottleNumber, this.country, this.year, this.dateAdded, this.vineYard)
+    let wineBatch = new WineBatch(this.batchName, this.bottleNumber, this.country, this.year, this.dateAdded, this.vineYard)
 
-    this.vineProvider.addVineBatch(vineBatch)
+    this.vineProvider.addWineBatch(wineBatch)
   }
 }

@@ -31,8 +31,6 @@ export class HomePage {
   }
 
   public scan() {
-    QRScanner.scan()
-
     function displayContents(err, text) {
       if (err) {
 

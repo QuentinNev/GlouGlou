@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { Storage } from '@ionic/storage';
-import { VineBatchProvider } from '../_providers/VineBatchProvider';
-import { VineBatch } from '../_models/VineBatch';
+import { VineBatchProvider } from '../_providers/WineBatchProvider';
+import { VineBatch } from '../_models/WineBatch';
 import { QRScanner, QRScannerStatus } from '@ionic-native/qr-scanner/ngx'
 
 @Component({

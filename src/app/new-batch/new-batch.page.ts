@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Storage } from '@ionic/storage';
-import { VineBatchProvider } from '../_providers/VineBatchProvider'
-import { VineBatch } from '../_models/VineBatch'
+import { VineBatchProvider } from '../_providers/WineBatchProvider'
+import { VineBatch } from '../_models/WineBatch'
 
 @Component({
   selector: 'app-new-batch',

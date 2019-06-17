@@ -18,21 +18,25 @@ export class ShowBatchPage implements OnInit {
   }
 
   ngOnInit() {
-    this.batchId = this.route.snapshot.paramMap.get('id')
-    this.loadBatch()
-    this.generateQRCode()
-    this.QRCode = null
+    this.refresh()
   }
+
 
   loadBatch() {
     this.wineBatchProvider.getWineBatch(this.batchId).then(batch => {
       this.wineBatch = batch
+      this.generateQRCode()
     })
+  }
+
+  public async refresh() {
+    this.batchId = await this.route.snapshot.paramMap.get('id')
+    this.loadBatch()
   }
 
   generateQRCode() {
     // toDataURL return an base64 encoded picture and not an URL at all
-    QRCode.toDataURL(this.batchId).then(url => {
+    QRCode.toDataURL(this.wineBatch.uuid).then(url => {
       console.log(url)
       this.QRCode = url
     }).catch(err => {

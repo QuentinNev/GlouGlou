@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import QRCode from 'qrcode'
 import { ActivatedRoute } from '@angular/router';
-import { VineBatchProvider } from '../_providers/VineBatchProvider';
-import { VineBatch } from '../_models/VineBatch';
+import { WineBatchProvider } from '../_providers/WineBatchProvider';
+import { WineBatch } from '../_models/WineBatch';
 
 @Component({
   selector: 'app-show-batch',
@@ -12,9 +12,9 @@ import { VineBatch } from '../_models/VineBatch';
 export class ShowBatchPage implements OnInit {
   private batchId: string
   private QRCode: string
-  private vineBatch: VineBatch
+  private wineBatch: WineBatch
 
-  constructor(private route: ActivatedRoute, private vineBatchProvider: VineBatchProvider) {
+  constructor(private route: ActivatedRoute, private wineBatchProvider: WineBatchProvider) {
   }
 
   ngOnInit() {
@@ -25,13 +25,13 @@ export class ShowBatchPage implements OnInit {
   }
 
   loadBatch() {
-    this.vineBatchProvider.getVineBatch(this.batchId).then(batch => {
-      this.vineBatch = batch
+    this.wineBatchProvider.getWineBatch(this.batchId).then(batch => {
+      this.wineBatch = batch
     })
   }
 
   generateQRCode() {
-    // toDataURL return an base64 encoded picture and not an URL at all, it can be used as it but it's not mandatory
+    // toDataURL return an base64 encoded picture and not an URL at all
     QRCode.toDataURL(this.batchId).then(url => {
       console.log(url)
       this.QRCode = url

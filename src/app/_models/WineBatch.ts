@@ -6,7 +6,7 @@ export class WineBatch {
   private name: string
   private country: string
   private year: number
-  private dateAdded: number
+  public dateAdded: number
   private vineYard: string
   public uuid: string
 

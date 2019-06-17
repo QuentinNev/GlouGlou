@@ -12,6 +12,7 @@ import { WineBatch } from '../_models/WineBatch';
 export class ShowBatchPage implements OnInit {
   private batchId: string
   private QRCode: string
+  private dateAdded: Date
   private wineBatch: WineBatch
 
   constructor(private route: ActivatedRoute, private wineBatchProvider: WineBatchProvider) {
@@ -25,6 +26,8 @@ export class ShowBatchPage implements OnInit {
   loadBatch() {
     this.wineBatchProvider.getWineBatch(this.batchId).then(batch => {
       this.wineBatch = batch
+      console.log(this.wineBatch)
+      this.dateAdded = new Date(this.wineBatch.dateAdded)
       this.generateQRCode()
     })
   }

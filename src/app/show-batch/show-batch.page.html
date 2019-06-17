@@ -1,9 +1,24 @@
 <ion-header>
   <ion-toolbar>
     <ion-title>showBatch</ion-title>
+    <ion-buttons slot="start">
+      <!-- 
+        "Handmade" back button here because ion-back-button does nothing 
+        The documentation doesn't explain anything about it
+      -->
+      <ion-button href="home">
+        <ion-icon name="arrow-back"></ion-icon>
+      </ion-button>
+    </ion-buttons>
   </ion-toolbar>
 </ion-header>
 
 <ion-content>
-  Name : {{ this.wineBatch.name }}
-  <img [src]="QRCode" alt="Select Image" /> </ion-content>
+  <ion-item>Name : {{ this.wineBatch.name }}</ion-item>
+  <ion-item>Country : {{ this.wineBatch.country }}</ion-item>
+  <ion-item>Vineyard : {{ this.wineBatch.vineyard }}</ion-item>
+  <ion-item>Number : {{ this.wineBatch.numberOfBottle }}</ion-item>
+  <ion-item>Year : {{ this.wineBatch.year }}</ion-item>
+  <ion-item>Date added : {{ dateAdded }}</ion-item>
+  <img [src]="QRCode" alt="Select Image" />
+</ion-content>

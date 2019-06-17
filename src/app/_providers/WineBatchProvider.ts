@@ -13,7 +13,7 @@ export class WineBatchProvider {
   constructor(storage: Storage, private httpClient: HttpClient) {
     this.storage = storage
     this.storageKey = "batches"
-    this.apiUrl = 'http://192.168.0.171:8080/api/qns/'
+    this.apiUrl = 'http://localhost:8000/api/qns/'
   }
 
   //#region API
@@ -22,17 +22,31 @@ export class WineBatchProvider {
     this.httpClient.get(this.apiUrl + 'wines').subscribe(result => {
       let observableResult = new ObservableResult(result)
       this.setWineBatches(observableResult.data)
+    }, error => {
+      console.error(error)
     })
+  }
+
+  public addWineBatch(data: any) {
+    //debugger
+    console.log("Sending data")
+    this.httpClient.post(this.apiUrl + 'wines', data, { observe: 'response' }).subscribe(res => {
+      console.log("got response !")
+    }, error => {
+      console.error("error")
+    })
+    console.log("Data sent !")
   }
 
   //#endregion
 
   //#region localstorage
 
-  public async addWineBatch(wineBatch: WineBatch) {
+  public async addLocalWineBatch(wineBatch: WineBatch) {
     let batches = await this.getWineBatches()
     batches = batches ? [...batches, wineBatch] : [wineBatch]
     this.storage.set(this.storageKey, batches)
+    this.addWineBatch(wineBatch)
   }
 
   public async setWineBatches(batches: any) {

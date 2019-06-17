@@ -35,6 +35,6 @@ export class NewBatchPage implements OnInit {
   public create() {
     let wineBatch = new WineBatch(this.batchName, this.bottleNumber, this.country, this.year, this.dateAdded, this.vineYard)
 
-    this.wineBatchProvider.addWineBatch(wineBatch)
+    this.wineBatchProvider.addLocalWineBatch(wineBatch)
   }
 }

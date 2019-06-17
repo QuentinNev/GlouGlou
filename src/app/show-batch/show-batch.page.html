@@ -1,6 +1,15 @@
 <ion-header>
   <ion-toolbar>
     <ion-title>showBatch</ion-title>
+    <ion-buttons slot="start">
+      <!-- 
+        "Handmade" back button here because ion-back-button does nothing 
+        The documentation doesn't explain anything about it
+      -->
+      <ion-button href="home">
+        <ion-icon name="arrow-back"></ion-icon>
+      </ion-button>
+    </ion-buttons>
   </ion-toolbar>
 </ion-header>
 

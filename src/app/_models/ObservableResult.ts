@@ -1,5 +1,5 @@
 /*
-    The only prupose of this object is to avoid errors on compilation by
+    The only purpose of this object is to avoid errors on compilation by
     having a data attribute
 */
 export class ObservableResult {

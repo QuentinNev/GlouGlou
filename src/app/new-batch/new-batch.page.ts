@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Storage } from '@ionic/storage';
 import { WineBatchProvider } from '../_providers/WineBatchProvider'
 import { WineBatch } from '../_models/WineBatch'
+import { LastUpdateService } from '../last-update.service';
 
 @Component({
   selector: 'app-new-batch',
@@ -15,8 +16,10 @@ export class NewBatchPage implements OnInit {
   public year: number
   public dateAdded: number
   public vineYard: string
+  private connectionState: string
 
-  constructor(public wineBatchProvider: WineBatchProvider) {
+  constructor(public wineBatchProvider: WineBatchProvider, private lup: LastUpdateService) {
+    this.connectionState = (this.lup.lastTry) ? "Online" : "Offline"
     if (false) {
       this.batchName = "Vin vraiment très nul"
       this.bottleNumber = 10

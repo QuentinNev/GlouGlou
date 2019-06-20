@@ -4,6 +4,7 @@ import { WineBatchProvider } from '../_providers/WineBatchProvider';
 import { WineBatch } from '../_models/WineBatch';
 import { QRScanner, QRScannerStatus } from '@ionic-native/qr-scanner/ngx'
 import { Router } from '@angular/router';
+import { LastUpdateService } from '../last-update.service';
 
 @Component({
   selector: 'app-home',
@@ -12,10 +13,11 @@ import { Router } from '@angular/router';
 })
 export class HomePage {
   private wineBatches: Array<WineBatch>
-  private test: String
+  private connectionState: string
 
-  constructor(public wineBatchProvider: WineBatchProvider, private qrScanner: QRScanner, private router: Router) {
+  constructor(public wineBatchProvider: WineBatchProvider, private qrScanner: QRScanner, private router: Router, private lup: LastUpdateService) {
     this.getWineBatches()
+    this.connectionState = (this.lup.lastTry) ? "Online" : "Offline"
   }
 
   /**
@@ -28,6 +30,7 @@ export class HomePage {
 
   public refresh() {
     this.getWineBatches()
+    this.connectionState = (this.lup.lastTry) ? "Online" : "Offline"
   }
 
   public removeBatch(uuid: string) {

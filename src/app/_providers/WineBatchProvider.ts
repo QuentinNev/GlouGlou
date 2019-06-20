@@ -3,6 +3,7 @@ import { WineBatch } from '../_models/WineBatch'
 import { Injectable } from '@angular/core'
 import { HttpClient } from '@angular/common/http'
 import { ObservableResult } from '../_models/ObservableResult'
+import { LastUpdateService } from '../last-update.service';
 
 @Injectable()
 export class WineBatchProvider {
@@ -10,7 +11,7 @@ export class WineBatchProvider {
   private storageKey: string
   private apiUrl: string
 
-  constructor(storage: Storage, private httpClient: HttpClient) {
+  constructor(storage: Storage, private httpClient: HttpClient, private lup: LastUpdateService) {
     this.storage = storage
     this.storageKey = "batches"
     this.apiUrl = 'http://localhost:8000/api/qns/'
@@ -22,7 +23,11 @@ export class WineBatchProvider {
     this.httpClient.get(this.apiUrl + 'wines').subscribe(result => {
       let observableResult = new ObservableResult(result)
       this.setWineBatches(observableResult.data)
+
+      this.lup.lastTry = true
+      this.lup.lastUpdate = Date.now()
     }, error => {
+      this.lup.lastTry = false
       console.error(error)
     })
   }

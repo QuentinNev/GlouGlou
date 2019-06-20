@@ -10,10 +10,9 @@ import { AppComponent } from './app.component';
 import { AppRoutingModule } from './app-routing.module';
 import { IonicStorageModule } from '@ionic/storage';
 import { WineBatchProvider } from './_providers/WineBatchProvider';
-import { ConnectionStateProvider } from './_providers/ConnectionStateProvider';
 import { HttpClientModule } from '@angular/common/http'
 import { QRScanner } from '@ionic-native/qr-scanner/ngx';
-import { Network } from '@ionic-native/network/ngx'
+import { LastUpdateService } from './last-update.service';
 
 @NgModule({
   declarations: [AppComponent],
@@ -25,8 +24,7 @@ import { Network } from '@ionic-native/network/ngx'
     { provide: RouteReuseStrategy, useClass: IonicRouteStrategy },
     WineBatchProvider,
     QRScanner,
-    Network,
-    ConnectionStateProvider
+    LastUpdateService
   ],
   bootstrap: [AppComponent]
 })

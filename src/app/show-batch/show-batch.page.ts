@@ -3,6 +3,7 @@ import QRCode from 'qrcode'
 import { ActivatedRoute } from '@angular/router';
 import { WineBatchProvider } from '../_providers/WineBatchProvider';
 import { WineBatch } from '../_models/WineBatch';
+import { LastUpdateService } from '../last-update.service';
 
 @Component({
   selector: 'app-show-batch',
@@ -14,8 +15,10 @@ export class ShowBatchPage implements OnInit {
   private QRCode: string
   private dateAdded: Date
   private wineBatch: WineBatch
+  private connectionState: string
 
-  constructor(private route: ActivatedRoute, private wineBatchProvider: WineBatchProvider) {
+  constructor(private route: ActivatedRoute, private wineBatchProvider: WineBatchProvider, private lup: LastUpdateService) {
+    this.connectionState = (this.lup.lastTry) ? "Online" : "Offline"
   }
 
   ngOnInit() {

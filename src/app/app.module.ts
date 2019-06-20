@@ -11,6 +11,7 @@ import { AppRoutingModule } from './app-routing.module';
 import { IonicStorageModule } from '@ionic/storage';
 import { WineBatchProvider } from './_providers/WineBatchProvider';
 import { HttpClientModule } from '@angular/common/http'
+import { QRScanner } from '@ionic-native/qr-scanner/ngx';
 
 @NgModule({
   declarations: [AppComponent],
@@ -20,7 +21,8 @@ import { HttpClientModule } from '@angular/common/http'
     StatusBar,
     SplashScreen,
     { provide: RouteReuseStrategy, useClass: IonicRouteStrategy },
-    WineBatchProvider
+    WineBatchProvider,
+    QRScanner
   ],
   bootstrap: [AppComponent]
 })

@@ -3,6 +3,7 @@ import { Storage } from '@ionic/storage';
 import { WineBatchProvider } from '../_providers/WineBatchProvider';
 import { WineBatch } from '../_models/WineBatch';
 import { QRScanner, QRScannerStatus } from '@ionic-native/qr-scanner/ngx'
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-home',
@@ -13,7 +14,7 @@ export class HomePage {
   private wineBatches: Array<WineBatch>
   private test: String
 
-  constructor(public wineBatchProvider: WineBatchProvider) {
+  constructor(public wineBatchProvider: WineBatchProvider, private qrScanner: QRScanner, private router: Router) {
     this.getWineBatches()
   }
 
@@ -40,12 +41,27 @@ export class HomePage {
   }
 
   public scan() {
-    function displayContents(err, text) {
-      if (err) {
+    this.qrScanner.prepare()
+      .then((status: QRScannerStatus) => {
+        if (status.authorized) {
+          // camera permission was granted
+          this.qrScanner.show()
+          // start scanning
+          let scanSub = this.qrScanner.scan().subscribe((text: string) => {
+            console.log('Scanned something', text);
+            this.router.navigateByUrl("/show-batch/" + text)
 
-      } else {
-        this.navCtrl.goForward('/show-batch/' + text)
-      }
-    }
+            this.qrScanner.hide(); // hide camera preview
+            scanSub.unsubscribe(); // stop scanning
+          });
+        } else if (status.denied) {
+          this.test = "DENIED"
+          // camera permission was permanently denied
+        } else {
+          this.test = "MDR VTFF"
+          // permission was denied, but not permanently. You can ask for permission again at a later time.
+        }
+      })
+      .catch((e: any) => console.log('Error is', e));
   }
 }

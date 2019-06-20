@@ -39,7 +39,7 @@ export class ShowBatchPage implements OnInit {
 
   generateQRCode() {
     // toDataURL return an base64 encoded picture and not an URL at all
-    QRCode.toDataURL(this.wineBatch.uuid).then(url => {
+    QRCode.toDataURL(this.batchId).then(url => {
       console.log(url)
       this.QRCode = url
     }).catch(err => {

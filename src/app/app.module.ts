@@ -10,8 +10,10 @@ import { AppComponent } from './app.component';
 import { AppRoutingModule } from './app-routing.module';
 import { IonicStorageModule } from '@ionic/storage';
 import { WineBatchProvider } from './_providers/WineBatchProvider';
+import { ConnectionStateProvider } from './_providers/ConnectionStateProvider';
 import { HttpClientModule } from '@angular/common/http'
 import { QRScanner } from '@ionic-native/qr-scanner/ngx';
+import { Network } from '@ionic-native/network/ngx'
 
 @NgModule({
   declarations: [AppComponent],
@@ -22,7 +24,9 @@ import { QRScanner } from '@ionic-native/qr-scanner/ngx';
     SplashScreen,
     { provide: RouteReuseStrategy, useClass: IonicRouteStrategy },
     WineBatchProvider,
-    QRScanner
+    QRScanner,
+    Network,
+    ConnectionStateProvider
   ],
   bootstrap: [AppComponent]
 })

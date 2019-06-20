@@ -18,7 +18,8 @@
             <ion-button color="danger" expand="full" (click)="removeBatch(batch.uuid)">Delete</ion-button>
           </ion-col>
           <ion-col size="4">
-            <ion-button expand="full" [attr.href]="'/show-batch/' + batch.uuid">View batch</ion-button>
+            <ion-button expand="full" (click)="showBatch(batch.uuid)">View batch
+            </ion-button>
           </ion-col>
         </ion-row>
       </ion-grid>
@@ -30,10 +31,9 @@
   <ion-toolbar>
     <ion-row>
       <ion-col>
-        <ion-button expand="full" href="/new-batch">Add a new batch</ion-button>
+        <ion-button expand="full" routerLink="/new-batch">Add a new batch</ion-button>
       </ion-col>
-      <!--  As button is used in place of a ion-resfresher because the component is broken,
-          everything is hided behind the header  -->
+      <!--  As button is used in place of a ion-resfresher because everything is hided behind the header  -->
       <ion-col>
         <ion-button color="secondary" expand="full" (click)="refresh()">Resfresh list</ion-button>
       </ion-col>

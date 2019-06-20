@@ -35,6 +35,10 @@ export class HomePage {
     })
   }
 
+  public showBatch(id) {
+    this.router.navigateByUrl("/show-batch/" + id)
+  }
+
   public scan() {
     function displayContents(err, text) {
       if (err) {

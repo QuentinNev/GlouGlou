@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Storage } from '@ionic/storage';
 import { WineBatchProvider } from '../_providers/WineBatchProvider'
 import { WineBatch } from '../_models/WineBatch'
-import { LastUpdateService } from '../last-update.service';
+import { LastUpdateService } from '../_services/last-update.service';
 
 @Component({
   selector: 'app-new-batch',

@@ -3,7 +3,7 @@ import QRCode from 'qrcode'
 import { ActivatedRoute } from '@angular/router';
 import { WineBatchProvider } from '../_providers/WineBatchProvider';
 import { WineBatch } from '../_models/WineBatch';
-import { LastUpdateService } from '../last-update.service';
+import { LastUpdateService } from '../_services/last-update.service';
 
 @Component({
   selector: 'app-show-batch',

@@ -3,7 +3,7 @@ import { WineBatch } from '../_models/WineBatch'
 import { Injectable } from '@angular/core'
 import { HttpClient } from '@angular/common/http'
 import { ObservableResult } from '../_models/ObservableResult'
-import { LastUpdateService } from '../last-update.service';
+import { LastUpdateService } from '../_services/last-update.service';
 
 @Injectable()
 export class WineBatchProvider {

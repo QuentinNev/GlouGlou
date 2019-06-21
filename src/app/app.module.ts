@@ -12,7 +12,7 @@ import { IonicStorageModule } from '@ionic/storage';
 import { WineBatchProvider } from './_providers/WineBatchProvider';
 import { HttpClientModule } from '@angular/common/http'
 import { QRScanner } from '@ionic-native/qr-scanner/ngx';
-import { LastUpdateService } from './last-update.service';
+import { LastUpdateService } from './_services/last-update.service';
 
 @NgModule({
   declarations: [AppComponent],
@@ -24,7 +24,7 @@ import { LastUpdateService } from './last-update.service';
     { provide: RouteReuseStrategy, useClass: IonicRouteStrategy },
     WineBatchProvider,
     QRScanner,
-    LastUpdateService
+    LastUpdateService,
   ],
   bootstrap: [AppComponent]
 })

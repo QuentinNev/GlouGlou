@@ -13,6 +13,7 @@ import { WineBatchProvider } from './_providers/WineBatchProvider';
 import { HttpClientModule } from '@angular/common/http'
 import { QRScanner } from '@ionic-native/qr-scanner/ngx';
 import { LastUpdateService } from './_services/last-update.service';
+import { ToasterService } from './_services/toaster.service';
 
 @NgModule({
   declarations: [AppComponent],
@@ -25,6 +26,7 @@ import { LastUpdateService } from './_services/last-update.service';
     WineBatchProvider,
     QRScanner,
     LastUpdateService,
+    ToasterService
   ],
   bootstrap: [AppComponent]
 })

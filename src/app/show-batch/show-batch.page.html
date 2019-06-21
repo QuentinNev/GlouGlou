@@ -5,7 +5,7 @@
       <ion-back-button></ion-back-button>
     </ion-buttons>
     <ion-buttons slot="end">
-      <ion-button>
+      <ion-button (click)="this.toaster.showToast(this.lup.lastUpdate)">
         {{ this.connectionState }}
       </ion-button>
     </ion-buttons>

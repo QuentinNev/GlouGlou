@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import { Storage } from '@ionic/storage';
 import { WineBatchProvider } from '../_providers/WineBatchProvider'
 import { WineBatch } from '../_models/WineBatch'
 import { LastUpdateService } from '../_services/last-update.service';
+import { ToasterService } from '../_services/toaster.service';
 
 @Component({
   selector: 'app-new-batch',
@@ -18,18 +18,12 @@ export class NewBatchPage implements OnInit {
   public vineYard: string
   private connectionState: string
 
-  constructor(public wineBatchProvider: WineBatchProvider, private lup: LastUpdateService) {
+  constructor(
+    public wineBatchProvider: WineBatchProvider,
+    private lup: LastUpdateService,
+    private toaster: ToasterService
+  ) {
     this.connectionState = (this.lup.lastTry) ? "Online" : "Offline"
-    if (false) {
-      this.batchName = "Vin vraiment très nul"
-      this.bottleNumber = 10
-      this.country = "Ici"
-      this.year = 20000
-
-      // Known bug : Two-way binding ([(ngModel)]="") doesn't work with ion-datetime component since something like 1 year but they doesn't seems to care
-      this.dateAdded = Date.now()
-      this.vineYard = "Vous n'est pas ignoble vous êtes vignoble"
-    }
   }
 
   ngOnInit() {

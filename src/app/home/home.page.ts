@@ -4,6 +4,7 @@ import { WineBatch } from '../_models/WineBatch';
 import { QRScanner, QRScannerStatus } from '@ionic-native/qr-scanner/ngx'
 import { Router } from '@angular/router';
 import { LastUpdateService } from '../_services/last-update.service';
+import { ToasterService } from '../_services/toaster.service';
 
 @Component({
   selector: 'app-home',
@@ -14,7 +15,13 @@ export class HomePage {
   private wineBatches: Array<WineBatch>
   private connectionState: string
 
-  constructor(public wineBatchProvider: WineBatchProvider, private qrScanner: QRScanner, private router: Router, private lup: LastUpdateService) {
+  constructor(
+    public wineBatchProvider: WineBatchProvider,
+    private qrScanner: QRScanner,
+    private router: Router,
+    private lup: LastUpdateService,
+    private toaster: ToasterService
+  ) {
     this.getWineBatches()
     this.connectionState = (this.lup.lastTry) ? "Online" : "Offline"
   }
@@ -57,10 +64,8 @@ export class HomePage {
             scanSub.unsubscribe(); // stop scanning
           });
         } else if (status.denied) {
-          this.test = "DENIED"
           // camera permission was permanently denied
         } else {
-          this.test = "MDR VTFF"
           // permission was denied, but not permanently. You can ask for permission again at a later time.
         }
       })

@@ -4,6 +4,7 @@ import { ActivatedRoute } from '@angular/router';
 import { WineBatchProvider } from '../_providers/WineBatchProvider';
 import { WineBatch } from '../_models/WineBatch';
 import { LastUpdateService } from '../_services/last-update.service';
+import { ToasterService } from '../_services/toaster.service';
 
 @Component({
   selector: 'app-show-batch',
@@ -17,7 +18,12 @@ export class ShowBatchPage implements OnInit {
   private wineBatch: WineBatch
   private connectionState: string
 
-  constructor(private route: ActivatedRoute, private wineBatchProvider: WineBatchProvider, private lup: LastUpdateService) {
+  constructor(
+    private route: ActivatedRoute,
+    private wineBatchProvider: WineBatchProvider,
+    private lup: LastUpdateService,
+    private toaster: ToasterService
+  ) {
     this.connectionState = (this.lup.lastTry) ? "Online" : "Offline"
   }
 

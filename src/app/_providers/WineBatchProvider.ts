@@ -4,6 +4,7 @@ import { Injectable } from '@angular/core'
 import { HttpClient } from '@angular/common/http'
 import { ObservableResult } from '../_models/ObservableResult'
 import { LastUpdateService } from '../_services/last-update.service';
+import { ToasterService } from '../_services/toaster.service'
 
 @Injectable()
 export class WineBatchProvider {
@@ -11,7 +12,7 @@ export class WineBatchProvider {
   private storageKey: string
   private apiUrl: string
 
-  constructor(storage: Storage, private httpClient: HttpClient, private lup: LastUpdateService) {
+  constructor(storage: Storage, private httpClient: HttpClient, private lup: LastUpdateService, private toaster: ToasterService) {
     this.storage = storage
     this.storageKey = "batches"
     this.apiUrl = 'http://localhost:8000/api/qns/'
@@ -25,10 +26,10 @@ export class WineBatchProvider {
       this.setWineBatches(observableResult.data)
 
       this.lup.lastTry = true
-      this.lup.lastUpdate = Date.now()
+      this.lup.lastUpdate = `Last successful update : ${new Date().toString()}`
     }, error => {
       this.lup.lastTry = false
-      console.error(error)
+      this.toaster.showToast("Couldn't refresh wines")
     })
   }
 

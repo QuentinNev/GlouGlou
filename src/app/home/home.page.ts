@@ -23,7 +23,7 @@ export class HomePage {
     private toaster: ToasterService
   ) {
     this.getWineBatches()
-    this.connectionState = (this.lup.lastTry) ? "Online" : "Offline"
+    this.connectionState = this.lup.getState()
   }
 
   /**
@@ -36,7 +36,7 @@ export class HomePage {
 
   public refresh() {
     this.getWineBatches()
-    this.connectionState = (this.lup.lastTry) ? "Online" : "Offline"
+    this.connectionState = this.lup.getState()
   }
 
   public removeBatch(uuid: string) {

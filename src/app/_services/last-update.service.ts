@@ -4,6 +4,10 @@ import { Injectable } from '@angular/core';
   providedIn: 'root'
 })
 export class LastUpdateService {
-  public lastUpdate: number
+  public lastUpdate: string
   public lastTry: boolean
+
+  public getState() {
+    return (this.lastTry) ? "Online" : "Offline"
+  }
 }

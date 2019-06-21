@@ -24,7 +24,7 @@ export class ShowBatchPage implements OnInit {
     private lup: LastUpdateService,
     private toaster: ToasterService
   ) {
-    this.connectionState = (this.lup.lastTry) ? "Online" : "Offline"
+    this.connectionState = this.lup.getState()
   }
 
   ngOnInit() {

@@ -6,17 +6,28 @@ import { ToastController } from '@ionic/angular';
 })
 // use this class to show a toast
 export class ToasterService {
+  private duration: number
 
-  constructor(public toastController: ToastController) { }
+  constructor(public toastController: ToastController) {
+    this.duration = 1000
+  }
 
-  showToast(date) {
-    let text: Date = new Date(date)
-    this.toastController.create({
-      message: `Last successful update : ${text.toString()}`,
-      duration: 2000
-    }).then((toastData) => {
-      toastData.present();
-    });
+  showToast(message) {
+    if (message != null) {
+      this.toastController.create({
+        message: message,
+        duration: this.duration
+      }).then((toastData) => {
+        toastData.present();
+      });
+    } else {
+      this.toastController.create({
+        message: "No wines have been fetched yet.",
+        duration: this.duration
+      }).then((toastData) => {
+        toastData.present();
+      });
+    }
   }
 
   HideToast() {

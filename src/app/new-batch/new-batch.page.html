@@ -26,12 +26,11 @@
     <ion-input placeholder="Year" [(ngModel)]="year" type="number"></ion-input>
   </ion-item>
   <ion-item>
-    <ion-datetime placeholder="Date added" [(ngModel)]="dateAdded" display-format="DD MMM YYYY"></ion-datetime>
-  </ion-item>
-  <ion-item>
     <ion-input placeholder="Vineyard" [(ngModel)]="vineYard" type="text"></ion-input>
   </ion-item>
-  <span>
-    <ion-button href="/" (click)="create()">Create vine batch</ion-button>
-  </span>
 </ion-content>
+<ion-footer>
+  <ion-toolbar>
+    <ion-button expand="full" routerLink="/" (click)="create()">Create vine batch</ion-button>
+  </ion-toolbar>
+</ion-footer>

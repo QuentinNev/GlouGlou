@@ -14,7 +14,6 @@ export class NewBatchPage implements OnInit {
   public bottleNumber: number
   public country: string
   public year: number
-  public dateAdded: number
   public vineYard: string
   private connectionState: string
 
@@ -30,12 +29,13 @@ export class NewBatchPage implements OnInit {
   }
 
   public create() {
+    let dateAdded = Date.now()
     let wineBatch = new WineBatch(
       this.batchName,
       this.bottleNumber,
       this.country,
       this.year,
-      this.dateAdded,
+      dateAdded,
       this.vineYard
     )
     this.wineBatchProvider.addLocalWineBatch(wineBatch)

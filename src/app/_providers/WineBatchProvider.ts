@@ -9,18 +9,16 @@ import { SettingsService } from '../_services/settings.service';
 
 @Injectable()
 export class WineBatchProvider {
-  private storage: Storage
   private storageKey: string
   private apiUrl: string
 
   constructor(
-    storage: Storage,
+    private storage: Storage,
     private httpClient: HttpClient,
     private lup: LastUpdateService,
     private toaster: ToasterService,
     private settings: SettingsService
   ) {
-    this.storage = storage
     this.storageKey = "batches"
     this.settings.getSettings().then(settings => {
       this.apiUrl = settings['apiUrl']

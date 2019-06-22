@@ -6,12 +6,12 @@ For now, the app represents a single vine cellar containing multiples "vines bat
 A vine batch present itself like this :
 ```javascript
 {
+  "id": 1,
   "bottleCount" : 5000,
   "country" : "Va-t-y quand ?",
   "dateAdded" : 1558001469770,
   "name" : "Chat tout neuf du Pape",
   "year" : 1404,
-  "vineYard" : "Vignoble personnage",
-  "uuid": "7991d864-b127-47cd-994a-567fc7dadf9a"
+  "vineYard" : "Vignoble personnage"
 }
 ```

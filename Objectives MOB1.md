@@ -2,17 +2,17 @@
 
 - **16.05.2019**
   - Create project
-  - Create VineBatch model
-  - Create VineBatchProvider
-  - Add set & get a VineBatch
+  - Create WineBatch model
+  - Create WineBatchProvider
+  - Add set & get a WineBatch
 
 ## Objectifs restants
 
-- VineBatch
-  - VineBatch list view
+- WineBatch
+  - WineBatch list view
   - ViewBatch detail
   - QRCode for batch
   - Photo for batch
-- VineBatchProvider
+- WineBatchProvider
   - Add batch
   - Remove batch

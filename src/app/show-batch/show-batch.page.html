@@ -1,0 +1,26 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>showBatch</ion-title>
+    <ion-buttons slot="start">
+      <ion-back-button></ion-back-button>
+    </ion-buttons>
+    <ion-buttons slot="end">
+      <ion-button (click)="this.toaster.showToast(this.lup.lastUpdate)">
+        {{ this.connectionState }}
+      </ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-item>Name : {{ this.wineBatch.name }}</ion-item>
+  <ion-item>Country : {{ this.wineBatch.country }}</ion-item>
+  <ion-item>Vineyard : {{ this.wineBatch.vineyard }}</ion-item>
+  <ion-item>Number : {{ this.wineBatch.numberOfBottle }}</ion-item>
+  <ion-item>Year : {{ this.wineBatch.year }}</ion-item>
+  <ion-item>Date added : {{ dateAdded }}</ion-item>
+  <ion-item>
+    <img [src]="QRCode" alt="Select Image" />
+  </ion-item>
+
+</ion-content>

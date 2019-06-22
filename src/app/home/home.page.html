@@ -1,21 +1,33 @@
 <ion-header>
   <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-button routerLink="/settings">
+        <ion-icon name="build"></ion-icon>
+      </ion-button>
+    </ion-buttons>
     <ion-title>
       GlouGlou
     </ion-title>
+    <ion-buttons slot="end">
+      <ion-button (click)="this.toaster.showToast(this.lup.lastUpdate)">
+        {{ this.connectionState }}
+      </ion-button>
+    </ion-buttons>
   </ion-toolbar>
 </ion-header>
 
 <ion-content>
   <ion-list>
-    <ion-item *ngFor="let batch of vineBatches">
+    <ion-item *ngFor="let batch of wineBatches" routerLink="/show-batch/{{batch.id}}">
       <ion-grid>
         <ion-row>
           <ion-col>
             {{ batch.name }}
           </ion-col>
-          <ion-col size="3">
-            <ion-button expand="full" (click)="removeBatch(batch.uuid)">Delete</ion-button>
+          <ion-col size="2">
+            <ion-button color="danger" expand="full" (click)="removeBatch(batch.id)">
+              <ion-icon name="trash"></ion-icon>
+            </ion-button>
           </ion-col>
         </ion-row>
       </ion-grid>
@@ -27,12 +39,14 @@
   <ion-toolbar>
     <ion-row>
       <ion-col>
-        <ion-button expand="full" href="/new-batch">Add a new batch</ion-button>
+        <ion-button expand="full" routerLink="/new-batch">Add a new batch</ion-button>
       </ion-col>
-      <!--  As button is used in place of a ion-resfresher because the component is broken,
-          everything is hided behind the header  -->
+      <!--  As button is used in place of a ion-resfresher because everything is hided behind the header  -->
       <ion-col>
         <ion-button color="secondary" expand="full" (click)="refresh()">Resfresh list</ion-button>
+      </ion-col>
+      <ion-col>
+        <ion-button color="light" expand="full" (click)="scan()">Toggle QR Scanner</ion-button>
       </ion-col>
     </ion-row>
   </ion-toolbar>

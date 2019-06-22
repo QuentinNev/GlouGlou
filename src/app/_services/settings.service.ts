@@ -37,7 +37,7 @@ export class SettingsService {
         this.storage.set(this.storageKey, settings)
         console.log("Updated apiUrl")
       } else {
-        this.storage.set(this.storageKey, { apiUrl: apiUrl, theme: "default" })
+        this.storage.set(this.storageKey, { apiUrl: apiUrl, theme: "neon" })
         console.log("stored apiUrl")
       }
     })

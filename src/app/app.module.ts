@@ -15,6 +15,7 @@ import { QRScanner } from '@ionic-native/qr-scanner/ngx';
 import { LastUpdateService } from './_services/last-update.service';
 import { ToasterService } from './_services/toaster.service';
 import { SettingsService } from './_services/settings.service';
+import { ThemeService } from './_services/theme.service';
 
 @NgModule({
   declarations: [AppComponent],
@@ -28,7 +29,8 @@ import { SettingsService } from './_services/settings.service';
     QRScanner,
     LastUpdateService,
     ToasterService,
-    SettingsService
+    SettingsService,
+    ThemeService
   ],
   bootstrap: [AppComponent]
 })

@@ -18,10 +18,10 @@
 
 <ion-content>
   <ion-list>
-    <ion-item *ngFor="let batch of wineBatches" routerLink="/show-batch/{{batch.id}}">
+    <ion-item *ngFor="let batch of wineBatches">
       <ion-grid>
         <ion-row>
-          <ion-col>
+          <ion-col routerLink="/show-batch/{{batch.id}}">
             {{ batch.name }}
           </ion-col>
           <ion-col size="2">

@@ -5,6 +5,7 @@ import { HttpClient } from '@angular/common/http'
 import { ObservableResult } from '../_models/ObservableResult'
 import { LastUpdateService } from '../_services/last-update.service';
 import { ToasterService } from '../_services/toaster.service'
+import { SettingsService } from '../_services/settings.service';
 
 @Injectable()
 export class WineBatchProvider {
@@ -12,24 +13,36 @@ export class WineBatchProvider {
   private storageKey: string
   private apiUrl: string
 
-  constructor(storage: Storage, private httpClient: HttpClient, private lup: LastUpdateService, private toaster: ToasterService) {
+  constructor(
+    storage: Storage,
+    private httpClient: HttpClient,
+    private lup: LastUpdateService,
+    private toaster: ToasterService,
+    private settings: SettingsService
+  ) {
     this.storage = storage
     this.storageKey = "batches"
-    this.apiUrl = 'http://localhost:8000/api/qns/'
+    this.settings.getSettings().then(settings => {
+      this.apiUrl = settings['apiUrl']
+    })
   }
 
   //#region API
 
   public refreshWineBatches() {
-    this.httpClient.get(this.apiUrl + 'wines').subscribe(result => {
-      let observableResult = new ObservableResult(result)
-      this.setWineBatches(observableResult.data)
+    this.settings.getSettings().then(settings => {
+      this.apiUrl = settings['apiUrl']
 
-      this.lup.lastTry = true
-      this.lup.lastUpdate = `Last successful update : ${new Date().toString()}`
-    }, error => {
-      this.lup.lastTry = false
-      this.toaster.showToast("Couldn't refresh wines")
+      this.httpClient.get(this.apiUrl + 'wines').subscribe(result => {
+        let observableResult = new ObservableResult(result)
+        this.setWineBatches(observableResult.data)
+
+        this.lup.lastTry = true
+        this.lup.lastUpdate = `Last successful update : ${new Date().toString()}`
+      }, error => {
+        this.lup.lastTry = false
+        this.toaster.showToast("Couldn't refresh wines")
+      })
     })
   }
 

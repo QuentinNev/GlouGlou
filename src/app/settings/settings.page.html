@@ -3,19 +3,20 @@
     <ion-buttons slot="start">
       <ion-back-button></ion-back-button>
     </ion-buttons>
-    <ion-title>settings</ion-title>
+    <ion-title>Settings</ion-title>
   </ion-toolbar>
 </ion-header>
 
 <ion-content>
   <ion-item>
     <ion-label>API URL</ion-label>
-    <ion-input [(ngModel)]="apiURL" tpye="text"></ion-input>
+    <ion-input [(ngModel)]="apiUrl" type="text" (change)="onApiUrlChanged(apiUrl)"></ion-input>
   </ion-item>
   <ion-item>
     <ion-label>Theme</ion-label>
-    <ion-select>
-
+    <ion-select (ionChange)="onThemeChanged(theme)" [(ngModel)]="theme">
+      <ion-select-option value="default">Default</ion-select-option>
+      <ion-select-option value="dark">Dark</ion-select-option>
     </ion-select>
   </ion-item>
 </ion-content>

@@ -28,23 +28,19 @@ export class ShowBatchPage implements OnInit {
   }
 
   ngOnInit() {
-    this.refresh()
+    this.loadBatch()
   }
 
-
-  loadBatch() {
+  /**
+   * Get wine id then load it
+   */
+  public async loadBatch() {
+    this.batchId = await this.route.snapshot.paramMap.get('id')
     this.wineBatchProvider.getWineBatch(this.batchId).then(batch => {
       this.wineBatch = batch
-      console.log(this.wineBatch)
       this.dateAdded = new Date(this.wineBatch.dateAdded)
       this.generateQRCode()
     })
-  }
-
-  public async refresh() {
-    this.batchId = await this.route.snapshot.paramMap.get('id')
-    console.log(this.batchId)
-    this.loadBatch()
   }
 
   generateQRCode() {

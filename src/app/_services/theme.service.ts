@@ -1,3 +1,7 @@
+/**
+ * This service creates and applies theme on the app
+ */
+
 import { Injectable, Inject } from '@angular/core';
 import { DOCUMENT } from '@angular/common'
 import * as Color from 'color'

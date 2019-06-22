@@ -1,3 +1,7 @@
+/**
+ * This service provides and store all app settings
+ */
+
 import { Storage } from '@ionic/storage'
 import { Injectable } from '@angular/core'
 

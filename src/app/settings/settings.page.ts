@@ -15,6 +15,7 @@ export class SettingsPage implements OnInit {
   }
 
   ngOnInit() {
+    // Set default settings if none have been set yet
     this.settingsService.getSettings().then(settings => {
       if (settings) {
         this.apiUrl = settings['apiUrl']
@@ -37,6 +38,10 @@ export class SettingsPage implements OnInit {
 
 }
 
+/**
+ * Here are stored theme parameters
+ * themeService.setTheme creates the theme on the fly
+ */
 const themes = {
   autumn: {
     primary: '#F78154',

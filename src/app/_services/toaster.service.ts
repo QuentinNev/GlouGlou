@@ -20,6 +20,7 @@ export class ToasterService {
     if (message != null) {
       this.toastController.create({
         message: message,
+        showCloseButton: true,
         duration: this.duration
       }).then((toastData) => {
         toastData.present()
@@ -27,6 +28,7 @@ export class ToasterService {
     } else {
       this.toastController.create({
         message: "No wines have been fetched yet.",
+        showCloseButton: true,
         duration: this.duration
       }).then((toastData) => {
         toastData.present()

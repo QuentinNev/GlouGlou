@@ -2,25 +2,22 @@ import { Storage } from '@ionic/storage'
 import { WineBatch } from '../_models/WineBatch'
 import { Injectable } from '@angular/core'
 import { HttpClient } from '@angular/common/http'
-import { ObservableResult } from '../_models/ObservableResult'
 import { LastUpdateService } from '../_services/last-update.service';
 import { ToasterService } from '../_services/toaster.service'
 import { SettingsService } from '../_services/settings.service';
 
 @Injectable()
 export class WineBatchProvider {
-  private storage: Storage
   private storageKey: string
   private apiUrl: string
 
   constructor(
-    storage: Storage,
+    private storage: Storage,
     private httpClient: HttpClient,
     private lup: LastUpdateService,
     private toaster: ToasterService,
     private settings: SettingsService
   ) {
-    this.storage = storage
     this.storageKey = "batches"
     this.settings.getSettings().then(settings => {
       this.apiUrl = settings['apiUrl']
@@ -32,29 +29,22 @@ export class WineBatchProvider {
   public refreshWineBatches() {
     this.settings.getSettings().then(settings => {
       this.apiUrl = settings['apiUrl']
+      this.getLocalWines().then(localWines => {
 
-      this.httpClient.get(this.apiUrl + 'wines').subscribe(result => {
-        let observableResult = new ObservableResult(result)
-        this.setWineBatches(observableResult.data)
+        this.httpClient.get(this.apiUrl + 'wines').subscribe(result => {
+          let wines = (localWines && localWines.length > 0) ? [...result['data'], ...localWines] : result['data']
 
-        this.lup.lastTry = true
-        this.lup.lastUpdate = `Last successful update : ${new Date().toString()}`
-      }, error => {
-        this.lup.lastTry = false
-        this.toaster.showToast("Couldn't refresh wines")
+          this.setWineBatches(wines)
+
+          this.lup.lastTry = true
+          this.lup.lastUpdate = `Last successful update : ${new Date().toString()}`
+        }, error => {
+          this.lup.lastTry = false
+          this.toaster.showToast("Couldn't refresh wines")
+        })
+
       })
     })
-  }
-
-  public addWineBatch(data: any) {
-    //debugger
-    console.log("Sending data")
-    this.httpClient.post(this.apiUrl + 'wines', data, { observe: 'response' }).subscribe(res => {
-      console.log("got response !")
-    }, error => {
-      console.error("error")
-    })
-    console.log("Data sent !")
   }
 
   //#endregion
@@ -65,7 +55,6 @@ export class WineBatchProvider {
     let batches = await this.getWineBatches()
     batches = batches ? [...batches, wineBatch] : [wineBatch]
     this.storage.set(this.storageKey, batches)
-    this.addWineBatch(wineBatch)
   }
 
   public async setWineBatches(batches: any) {
@@ -76,11 +65,11 @@ export class WineBatchProvider {
     this.storage.set(this.storageKey, [])
   }
 
-  public async removeWineBatch(uuid) {
+  public async removeWineBatch(id) {
     let batches = await this.getWineBatches()
     if (batches) {
       batches = batches.filter(function (batch) {
-        return batch.uuid !== uuid
+        return batch.id != id
       })
       this.storage.set(this.storageKey, batches)
     }
@@ -91,10 +80,16 @@ export class WineBatchProvider {
     return this.storage.get(this.storageKey)
   }
 
-  public getWineBatch(uuid: string) {
+  private getLocalWines() {
+    return this.getWineBatches().then(async wines => {
+      if (wines) return wines.filter(wine => wine['local'])
+    })
+  }
+
+  public getWineBatch(id) {
     return this.storage.get(this.storageKey).then(batches => {
       return batches.find(element => {
-        return element.uuid === uuid
+        return element.id == id
       })
     })
   }

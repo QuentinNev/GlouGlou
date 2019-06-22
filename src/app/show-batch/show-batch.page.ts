@@ -43,6 +43,7 @@ export class ShowBatchPage implements OnInit {
 
   public async refresh() {
     this.batchId = await this.route.snapshot.paramMap.get('id')
+    console.log(this.batchId)
     this.loadBatch()
   }
 

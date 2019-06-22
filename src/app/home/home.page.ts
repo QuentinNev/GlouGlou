@@ -14,16 +14,18 @@ import { ThemeService } from '../_services/theme.service';
 export class HomePage {
   private wineBatches: Array<WineBatch>
   private connectionState: string
+  private isScanning: boolean
 
   constructor(
     public wineBatchProvider: WineBatchProvider,
     private qrScanner: QRScanner,
     private router: Router,
     private lup: LastUpdateService,
-    private themeService: ThemeService
+    private themeService: ThemeService // Just include this service will load the stored theme
   ) {
     this.getWineBatches()
     this.connectionState = this.lup.getState()
+    this.isScanning = false
   }
 
   /**
@@ -50,25 +52,31 @@ export class HomePage {
   }
 
   public scan() {
-    this.qrScanner.prepare()
-      .then((status: QRScannerStatus) => {
-        if (status.authorized) {
-          // camera permission was granted
-          this.qrScanner.show()
-          // start scanning
-          let scanSub = this.qrScanner.scan().subscribe((text: string) => {
-            console.log('Scanned something', text);
-            this.router.navigateByUrl("/show-batch/" + text)
+    if (this.isScanning) {
+      this.isScanning = false
+      this.qrScanner.destroy()
+    } else {
+      this.isScanning = true
+      this.qrScanner.prepare()
+        .then((status: QRScannerStatus) => {
+          if (status.authorized) {
+            // camera permission was granted
+            this.qrScanner.show()
+            // start scanning
+            let scanSub = this.qrScanner.scan().subscribe((text: string) => {
+              console.log('Scanned something', text);
+              this.router.navigateByUrl("/show-batch/" + text)
 
-            this.qrScanner.hide(); // hide camera preview
-            scanSub.unsubscribe(); // stop scanning
-          });
-        } else if (status.denied) {
-          // camera permission was permanently denied
-        } else {
-          // permission was denied, but not permanently. You can ask for permission again at a later time.
-        }
-      })
-      .catch((e: any) => console.log('Error is', e));
+              this.qrScanner.destroy()
+              scanSub.unsubscribe()
+            });
+          } else if (status.denied) {
+            // camera permission was permanently denied
+          } else {
+            // permission was denied, but not permanently. You can ask for permission again at a later time.
+          }
+        })
+        .catch((e: any) => console.log('Error is', e));
+    }
   }
 }

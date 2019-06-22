@@ -32,6 +32,8 @@ export class WineBatchProvider {
       this.apiUrl = settings['apiUrl']
 
       this.httpClient.get(this.apiUrl + 'wines').subscribe(result => {
+        console.log(result['data'])
+
         let observableResult = new ObservableResult(result)
         this.setWineBatches(observableResult.data)
 
@@ -62,11 +64,11 @@ export class WineBatchProvider {
     this.storage.set(this.storageKey, [])
   }
 
-  public async removeWineBatch(uuid) {
+  public async removeWineBatch(id) {
     let batches = await this.getWineBatches()
     if (batches) {
       batches = batches.filter(function (batch) {
-        return batch.uuid !== uuid
+        return batch.id != id
       })
       this.storage.set(this.storageKey, batches)
     }
@@ -77,10 +79,10 @@ export class WineBatchProvider {
     return this.storage.get(this.storageKey)
   }
 
-  public getWineBatch(uuid: string) {
+  public getWineBatch(id) {
     return this.storage.get(this.storageKey).then(batches => {
       return batches.find(element => {
-        return element.uuid === uuid
+        return element.id == id
       })
     })
   }

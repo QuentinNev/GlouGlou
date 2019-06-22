@@ -41,8 +41,8 @@ export class HomePage {
     this.connectionState = this.lup.getState()
   }
 
-  public removeBatch(uuid: string) {
-    this.wineBatchProvider.removeWineBatch(uuid).then(() => {
+  public removeBatch(id) {
+    this.wineBatchProvider.removeWineBatch(id).then(() => {
       this.getWineBatches()
     })
   }

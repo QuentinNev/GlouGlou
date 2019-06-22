@@ -2,21 +2,21 @@ declare var require: any;
 const uuidFunction = require('uuid/v4')
 
 export class WineBatch {
-  private bottleNumber: number
+  private numberOfBottle: number
   private name: string
   private country: string
   private year: number
   public dateAdded: number
-  private vineYard: string
-  public uuid: string
+  private vineyard: string
+  public id: string
 
   constructor(name: string, bottleNbr: number, country: string, year: number, dateAdded: number, vineYard: string) {
-    this.bottleNumber = bottleNbr
+    this.numberOfBottle = bottleNbr
     this.country = country
     this.name = name
     this.year = year
     this.dateAdded = dateAdded
-    this.vineYard = vineYard
-    this.uuid = uuidFunction();
+    this.vineyard = vineYard
+    this.id = uuidFunction();
   }
 }

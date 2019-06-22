@@ -1,8 +1,17 @@
 # GlouGlou
 A vine cellar management application
+## Features
+- Fetch a list of wines from an api
+- Store a list of wines in localStorage
+- Create a new wine locally
+- Display wine's informations
+- Remove a wine locally created
+- Scan a QRCode and show the wine related to it
+- Set an url to fetch the wines on
+- Multiples themes availables
 ## Data model
 
-For now, the app represents a single vine cellar containing multiples "vines batches".
+For now, the app represents a single wine cellar containing multiples wines.
 A vine batch present itself like this :
 ```javascript
 {

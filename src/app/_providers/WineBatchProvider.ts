@@ -44,17 +44,6 @@ export class WineBatchProvider {
     })
   }
 
-  public addWineBatch(data: any) {
-    //debugger
-    console.log("Sending data")
-    this.httpClient.post(this.apiUrl + 'wines', data, { observe: 'response' }).subscribe(res => {
-      console.log("got response !")
-    }, error => {
-      console.error("error")
-    })
-    console.log("Data sent !")
-  }
-
   //#endregion
 
   //#region localstorage
@@ -63,7 +52,6 @@ export class WineBatchProvider {
     let batches = await this.getWineBatches()
     batches = batches ? [...batches, wineBatch] : [wineBatch]
     this.storage.set(this.storageKey, batches)
-    this.addWineBatch(wineBatch)
   }
 
   public async setWineBatches(batches: any) {

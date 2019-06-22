@@ -5,6 +5,7 @@ import { QRScanner, QRScannerStatus } from '@ionic-native/qr-scanner/ngx'
 import { Router } from '@angular/router';
 import { LastUpdateService } from '../_services/last-update.service';
 import { ThemeService } from '../_services/theme.service';
+import { ToasterService } from '../_services/toaster.service';
 
 @Component({
   selector: 'app-home',
@@ -21,6 +22,7 @@ export class HomePage {
     private qrScanner: QRScanner,
     private router: Router,
     private lup: LastUpdateService,
+    private toaster: ToasterService,
     private themeService: ThemeService // Just include this service will load the stored theme
   ) {
     this.getWineBatches()

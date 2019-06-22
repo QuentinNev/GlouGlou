@@ -4,7 +4,7 @@ import { WineBatch } from '../_models/WineBatch';
 import { QRScanner, QRScannerStatus } from '@ionic-native/qr-scanner/ngx'
 import { Router } from '@angular/router';
 import { LastUpdateService } from '../_services/last-update.service';
-import { ToasterService } from '../_services/toaster.service';
+import { ThemeService } from '../_services/theme.service';
 
 @Component({
   selector: 'app-home',
@@ -20,7 +20,7 @@ export class HomePage {
     private qrScanner: QRScanner,
     private router: Router,
     private lup: LastUpdateService,
-    private toaster: ToasterService
+    private themeService: ThemeService
   ) {
     this.getWineBatches()
     this.connectionState = this.lup.getState()

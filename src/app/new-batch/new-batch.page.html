@@ -28,7 +28,9 @@
   <ion-item>
     <ion-input placeholder="Vineyard" [(ngModel)]="vineYard" type="text"></ion-input>
   </ion-item>
-  <span>
-    <ion-button href="/" (click)="create()">Create vine batch</ion-button>
-  </span>
 </ion-content>
+<ion-footer>
+  <ion-toolbar>
+    <ion-button expand="full" href="/" (click)="create()">Create vine batch</ion-button>
+  </ion-toolbar>
+</ion-footer>

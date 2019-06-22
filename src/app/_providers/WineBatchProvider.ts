@@ -2,7 +2,6 @@ import { Storage } from '@ionic/storage'
 import { WineBatch } from '../_models/WineBatch'
 import { Injectable } from '@angular/core'
 import { HttpClient } from '@angular/common/http'
-import { ObservableResult } from '../_models/ObservableResult'
 import { LastUpdateService } from '../_services/last-update.service';
 import { ToasterService } from '../_services/toaster.service'
 import { SettingsService } from '../_services/settings.service';
@@ -30,18 +29,20 @@ export class WineBatchProvider {
   public refreshWineBatches() {
     this.settings.getSettings().then(settings => {
       this.apiUrl = settings['apiUrl']
+      this.getLocalWines().then(localWines => {
 
-      this.httpClient.get(this.apiUrl + 'wines').subscribe(result => {
-        console.log(result['data'])
+        this.httpClient.get(this.apiUrl + 'wines').subscribe(result => {
+          let wines = (localWines && localWines.length > 0) ? [...result['data'], ...localWines] : result['data']
 
-        let observableResult = new ObservableResult(result)
-        this.setWineBatches(observableResult.data)
+          this.setWineBatches(wines)
 
-        this.lup.lastTry = true
-        this.lup.lastUpdate = `Last successful update : ${new Date().toString()}`
-      }, error => {
-        this.lup.lastTry = false
-        this.toaster.showToast("Couldn't refresh wines")
+          this.lup.lastTry = true
+          this.lup.lastUpdate = `Last successful update : ${new Date().toString()}`
+        }, error => {
+          this.lup.lastTry = false
+          this.toaster.showToast("Couldn't refresh wines")
+        })
+
       })
     })
   }
@@ -77,6 +78,12 @@ export class WineBatchProvider {
   // Returns a promise, use in an async function !
   public getWineBatches() {
     return this.storage.get(this.storageKey)
+  }
+
+  private getLocalWines() {
+    return this.getWineBatches().then(async wines => {
+      if (wines) return wines.filter(wine => wine['local'])
+    })
   }
 
   public getWineBatch(id) {

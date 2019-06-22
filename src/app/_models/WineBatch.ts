@@ -8,7 +8,8 @@ export class WineBatch {
   private year: number
   public dateAdded: number
   private vineyard: string
-  public id: string
+  public id: any
+  private local: boolean
 
   constructor(name: string, bottleNbr: number, country: string, year: number, dateAdded: number, vineYard: string) {
     this.numberOfBottle = bottleNbr
@@ -17,6 +18,7 @@ export class WineBatch {
     this.year = year
     this.dateAdded = dateAdded
     this.vineyard = vineYard
-    this.id = uuidFunction();
+    this.id = uuidFunction()
+    this.local = true
   }
 }

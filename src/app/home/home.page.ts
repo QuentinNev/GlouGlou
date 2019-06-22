@@ -49,10 +49,6 @@ export class HomePage {
     })
   }
 
-  public showBatch(id) {
-    this.router.navigateByUrl("/show-batch/" + id)
-  }
-
   public scan() {
     if (this.isScanning) {
       this.isScanning = false

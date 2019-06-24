@@ -7,6 +7,7 @@ import { LastUpdateService } from '../_services/last-update.service';
 import { ToasterService } from '../_services/toaster.service';
 import { NoteProvider } from '../_providers/NoteProvider';
 import { Note } from '../_models/Note';
+import { log } from 'util';
 
 @Component({
   selector: 'app-show-batch',
@@ -45,9 +46,18 @@ export class ShowBatchPage implements OnInit {
       this.wineBatch = batch
       this.dateAdded = new Date(this.wineBatch.dateAdded)
       this.generateQRCode()
-
       // Get wine note
-      this.noteProvider.getNote(this.wineBatch.id).then(note => this.note = note)
+      this.noteProvider.getNote(this.wineBatch.id).then(note => {
+        console.log("WTFFFFF");
+        if (note) {
+          console.log("There's already a note")
+          this.note = note
+        } else {
+          console.log("Wine form api and no note set yet !")
+          let newNote = new Note(this.wineBatch.id, 0)
+          this.noteProvider.addNote(newNote)
+        }
+      })
     })
   }
 

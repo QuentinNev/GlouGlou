@@ -41,11 +41,18 @@ export class NoteProvider {
    * Returns a single note
    * @param wineId of wine related to the desired note
    */
-  public getNote(wineId: number) {
+  public getNote(wineId) {
     return this.storage.get(this.storageKey).then(notes => {
-      return notes.find(note => {
-        return note.wineId = wineId
-      })
+      if (notes) {
+        let foundNote = notes.find(note => {
+          return note.wineId == wineId
+        })
+        return foundNote ? foundNote : new Note(wineId, 0)
+      } else {
+        let newNote = new Note(wineId, 0)
+        this.addNote(newNote)
+        return { wineId: wineId, value: 0 }
+      }
     })
   }
 

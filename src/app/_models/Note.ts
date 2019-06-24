@@ -1,5 +1,5 @@
 export class Note {
-  private wineId: string
+  public wineId: string
   private value: number
 
   constructor(wineId: string, value: number) {

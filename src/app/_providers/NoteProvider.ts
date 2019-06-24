@@ -16,6 +16,10 @@ export class NoteProvider {
 
   //#region localstorage
 
+  public setNotes(notes: Array<Note>) {
+    this.storage.set(this.storageKey, notes)
+  }
+
   /**
    * Gets all notes and check if there's no notes already created
    * @param note to add to the storage
@@ -42,6 +46,19 @@ export class NoteProvider {
       return notes.find(note => {
         return note.wineId = wineId
       })
+    })
+  }
+
+  /**
+   * Update an already created note
+   * @param note note object with new value
+   */
+  public updateNote(updatedNote: Note) {
+    this.getNotes().then(notes => {
+      let newNotes = notes.map(note => {
+        return (note.wineId == updatedNote.wineId) ? updatedNote : note
+      })
+      this.setNotes(newNotes)
     })
   }
 

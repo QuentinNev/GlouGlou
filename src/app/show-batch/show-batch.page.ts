@@ -51,7 +51,7 @@ export class ShowBatchPage implements OnInit {
     })
   }
 
-  generateQRCode() {
+  private generateQRCode() {
     // toDataURL return an base64 encoded picture and not an URL at all
     QRCode.toDataURL(this.batchId).then(url => {
       console.log(url)
@@ -59,6 +59,10 @@ export class ShowBatchPage implements OnInit {
     }).catch(err => {
       console.log(err)
     })
+  }
+
+  public updateNote() {
+    this.noteProvider.updateNote(this.note)
   }
 
 }

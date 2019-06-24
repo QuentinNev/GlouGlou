@@ -5,6 +5,9 @@ import { WineBatchProvider } from '../_providers/WineBatchProvider';
 import { WineBatch } from '../_models/WineBatch';
 import { LastUpdateService } from '../_services/last-update.service';
 import { ToasterService } from '../_services/toaster.service';
+import { NoteProvider } from '../_providers/NoteProvider';
+import { Note } from '../_models/Note';
+import { log } from 'util';
 
 @Component({
   selector: 'app-show-batch',
@@ -16,13 +19,16 @@ export class ShowBatchPage implements OnInit {
   private QRCode: string
   private dateAdded: Date
   private wineBatch: WineBatch
+  private note: Note
+
   private connectionState: string
 
   constructor(
     private route: ActivatedRoute,
     private wineBatchProvider: WineBatchProvider,
     private lup: LastUpdateService,
-    private toaster: ToasterService
+    private toaster: ToasterService,
+    private noteProvider: NoteProvider
   ) {
     this.connectionState = this.lup.getState()
   }
@@ -40,10 +46,14 @@ export class ShowBatchPage implements OnInit {
       this.wineBatch = batch
       this.dateAdded = new Date(this.wineBatch.dateAdded)
       this.generateQRCode()
+      // Get wine note
+      this.noteProvider.getNote(this.wineBatch.id).then(note => {
+        this.note = note
+      })
     })
   }
 
-  generateQRCode() {
+  private generateQRCode() {
     // toDataURL return an base64 encoded picture and not an URL at all
     QRCode.toDataURL(this.batchId).then(url => {
       console.log(url)
@@ -51,6 +61,10 @@ export class ShowBatchPage implements OnInit {
     }).catch(err => {
       console.log(err)
     })
+  }
+
+  public updateNote() {
+    this.noteProvider.updateNote(this.note)
   }
 
 }

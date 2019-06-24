@@ -6,7 +6,8 @@ const routes: Routes = [
   { path: 'home', loadChildren: './home/home.module#HomePageModule' },
   { path: 'new-batch', loadChildren: './new-batch/new-batch.module#NewBatchPageModule' },
   { path: 'show-batch/:id', loadChildren: './show-batch/show-batch.module#ShowBatchPageModule' },
-  { path: 'settings', loadChildren: './settings/settings.module#SettingsPageModule' }
+  { path: 'settings', loadChildren: './settings/settings.module#SettingsPageModule' },
+  { path: 'finests', loadChildren: './finests/finests.module#FinestsPageModule' }
 ];
 
 @NgModule({

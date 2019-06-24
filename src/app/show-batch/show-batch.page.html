@@ -14,6 +14,18 @@
 
 <ion-content>
   <ion-item>Name : {{ this.wineBatch.name }}</ion-item>
+  <ion-item>Note :
+    <ion-grid>
+      <ion-row>
+        <ion-col>
+          <ion-range min="0" max="5" step="1" [(ngModel)]="this.note.value" (change)="updateNote()"></ion-range>
+        </ion-col>
+        <ion-col size="1">
+          {{ this.note.value }}
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+  </ion-item>
   <ion-item>Country : {{ this.wineBatch.country }}</ion-item>
   <ion-item>Vineyard : {{ this.wineBatch.vineyard }}</ion-item>
   <ion-item>Number : {{ this.wineBatch.numberOfBottle }}</ion-item>

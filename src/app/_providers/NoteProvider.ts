@@ -24,9 +24,14 @@ export class NoteProvider {
    * Gets all notes and check if there's no notes already created
    * @param note to add to the storage
    */
-  public async addNote(note: Note) {
+  public async addNote(note) {
     let notes = await this.getNotes()
-    notes = notes ? [...notes, note] : [note]
+    console.log("all notes", notes)
+    if (notes) { notes.push({ wineId: note.wineId, value: note.value }) }
+    else notes = [note]
+    console.log("updates notes", notes)
+
+    // this works only first time, where we set a second time notes in storage it just do nothing...
     this.storage.set(this.storageKey, notes)
   }
 
@@ -43,11 +48,17 @@ export class NoteProvider {
    */
   public getNote(wineId) {
     return this.storage.get(this.storageKey).then(notes => {
+      // avoid notes.find on undefined array
       if (notes) {
-        let foundNote = notes.find(note => {
-          return note.wineId == wineId
-        })
-        return foundNote ? foundNote : new Note(wineId, 0)
+        let foundNote = notes.find(note => { return note.wineId == wineId })
+        // create if there's not note yet
+        if (foundNote) { return foundNote }
+        else {
+          let newNote = new Note(wineId, 0)
+          this.addNote(newNote)
+          return { wineId: wineId, value: 0 }
+        }
+        // create if there's not note yet
       } else {
         let newNote = new Note(wineId, 0)
         this.addNote(newNote)
@@ -65,6 +76,7 @@ export class NoteProvider {
       let newNotes = notes.map(note => {
         return (note.wineId == updatedNote.wineId) ? updatedNote : note
       })
+
       this.setNotes(newNotes)
     })
   }

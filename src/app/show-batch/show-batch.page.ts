@@ -48,15 +48,7 @@ export class ShowBatchPage implements OnInit {
       this.generateQRCode()
       // Get wine note
       this.noteProvider.getNote(this.wineBatch.id).then(note => {
-        console.log("WTFFFFF");
-        if (note) {
-          console.log("There's already a note")
-          this.note = note
-        } else {
-          console.log("Wine form api and no note set yet !")
-          let newNote = new Note(this.wineBatch.id, 0)
-          this.noteProvider.addNote(newNote)
-        }
+        this.note = note
       })
     })
   }

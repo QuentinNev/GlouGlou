@@ -28,6 +28,16 @@
   <ion-item>
     <ion-input placeholder="Vineyard" [(ngModel)]="vineYard" type="text"></ion-input>
   </ion-item>
+  <ion-item>
+    <ion-grid>
+      <ion-row>
+        <ion-col>
+          <ion-range min="0" max="5" step="1" [(ngModel)]="note"></ion-range>
+        </ion-col>
+        <ion-col id="note" size="1">{{this.note}}</ion-col>
+      </ion-row>
+    </ion-grid>
+  </ion-item>
 </ion-content>
 <ion-footer>
   <ion-toolbar>

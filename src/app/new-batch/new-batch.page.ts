@@ -15,6 +15,7 @@ export class NewBatchPage implements OnInit {
   public country: string
   public year: number
   public vineYard: string
+  public note: number
   private connectionState: string
 
   constructor(
@@ -23,6 +24,7 @@ export class NewBatchPage implements OnInit {
     private toaster: ToasterService
   ) {
     this.connectionState = this.lup.getState()
+    this.note = 0
   }
 
   ngOnInit() {

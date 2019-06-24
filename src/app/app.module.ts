@@ -16,6 +16,7 @@ import { LastUpdateService } from './_services/last-update.service';
 import { ToasterService } from './_services/toaster.service';
 import { SettingsService } from './_services/settings.service';
 import { ThemeService } from './_services/theme.service';
+import { NoteProvider } from './_providers/NoteProvider';
 
 @NgModule({
   declarations: [AppComponent],
@@ -30,7 +31,8 @@ import { ThemeService } from './_services/theme.service';
     LastUpdateService,
     ToasterService,
     SettingsService,
-    ThemeService
+    ThemeService,
+    NoteProvider
   ],
   bootstrap: [AppComponent]
 })

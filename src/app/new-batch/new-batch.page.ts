@@ -3,6 +3,8 @@ import { WineBatchProvider } from '../_providers/WineBatchProvider'
 import { WineBatch } from '../_models/WineBatch'
 import { LastUpdateService } from '../_services/last-update.service';
 import { ToasterService } from '../_services/toaster.service';
+import { NoteProvider } from '../_providers/NoteProvider';
+import { Note } from '../_models/Note';
 
 @Component({
   selector: 'app-new-batch',
@@ -21,7 +23,8 @@ export class NewBatchPage implements OnInit {
   constructor(
     public wineBatchProvider: WineBatchProvider,
     private lup: LastUpdateService,
-    private toaster: ToasterService
+    private toaster: ToasterService,
+    private noteProvider: NoteProvider
   ) {
     this.connectionState = this.lup.getState()
     this.note = 0
@@ -40,6 +43,11 @@ export class NewBatchPage implements OnInit {
       dateAdded,
       this.vineYard
     )
+
+    let newNote = new Note(wineBatch.id, this.note)
+
     this.wineBatchProvider.addLocalWineBatch(wineBatch)
+    this.noteProvider.addNote(newNote)
+    this.toaster.showToast(`${this.batchName} has been added !`)
   }
 }
